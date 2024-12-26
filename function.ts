@@ -1,4 +1,7 @@
-function factorial(count: number): number {
+function factorial(count: number): number | string {
+  if (count < 0) {
+    return 'Значение не может быть отрицательным';
+  }
   let result = 1;
   for (let i = 2; i <= count; i++) {
     result *= i;
@@ -8,20 +11,20 @@ function factorial(count: number): number {
 const stroke = (str: string): string => {
   let text: string[] = str.split(' '); // разбиваем строку на слова
 
-  let string = text.reduce((longest, current) => {
+  let string: string = text.reduce((longest, current) => {
     return current.length > longest.length ? current : longest; // используем метод reduce для нахождения самого длинного слова(1 значение будет самым длинным словом, 2 значение - текущее слово)
   }, '');
   return string;
 };
 
 const arrayFunc = (array: number[]): number => {
-  let maxNumber = array.reduce((a, b) => Math.max(a, b)); // используем метод reduce для нахождения самого большого числа
+  let maxNumber: number = array.reduce((a, b) => Math.max(a, b)); // используем метод reduce для нахождения самого большого числа
   return maxNumber;
 };
 
 const editStroke = (str: string, count: number): string => {
   let stroke: string = str;
-  if (str.length < count) {
+  if (str.length <= count) {
     return (stroke = str);
   }
   if (str.length > count) {
@@ -32,15 +35,15 @@ const editStroke = (str: string, count: number): string => {
 };
 
 const strUp = (str: string): string => {
-  let text = str.split(' '); // разбиваем строку на слова
+  let text: string[] = str.split(' '); // разбиваем строку на слова
 
-  let string = text.map((item) => {
+  let string: string[] = text.map((item) => {
     return item.charAt(0).toUpperCase() + item.slice(1); // переводим первую букву в верхний регистр
   });
   return string.join(' ');
 };
 
-const arrays = (array: number[], array2: number[], n: number): number[] => {
+const arrays = (array: number[], array2: number[], n: number): number[] | string => {
   let resultArrays: number[] = [];
   resultArrays.push(...array, ...array2.splice(0, n)); // объединяем два массива и удаляем из второго массива n элементов
   return resultArrays;
@@ -71,6 +74,9 @@ const func9 = (array: string[], count: number): string[][] => {
 // 10 Функция рекурсия
 const resultRecourse: number[] = [];
 const recourse = (array: number[], count: number) => {
+  if (count < 1) {
+    return 'Значение не может быть отрицательным или равным нулю';
+  }
   array.push(count);
   recourse(array, count - 1);
 };
