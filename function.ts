@@ -74,8 +74,8 @@ const func9 = (array: string[], count: number): string[][] => {
 // 10 Функция рекурсия
 const resultRecourse: number[] = [];
 const recourse = (array: number[], count: number) => {
-  if (count < 1) {
-    return 'Значение не может быть отрицательным или равным нулю';
+  if (count <= 0) {
+    return;
   }
   array.push(count);
   recourse(array, count - 1);
